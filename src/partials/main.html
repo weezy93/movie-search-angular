@@ -1,0 +1,21 @@
+<div class="twelve columns">
+  <form ng-submit="search(searchWord)">
+    <div class="row">
+      <div class="12 columns">
+        <label for="searchWord">Search</label>
+        <input class="u-full-width" type="searchWord" placeholder="search" id="searchWord" ng-model="searchWord" autofocus>
+      </div>
+    </div>
+    <input class="button-primary" type="submit" value="Submit">
+  </form>
+  <hr class="twelve columns">
+  <div id="results" class="twelve columns">
+    <ul>
+      <li ng-repeat="movie in result" track by $index ng-click="showSingleMovie(movie.id)">{{ movie.Title }} - {{ movie.Year }}
+        <ul>
+          <li><img ng-src="{{ movie.Poster }}" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

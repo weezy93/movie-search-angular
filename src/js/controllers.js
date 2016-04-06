@@ -5,8 +5,15 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
   $scope.search = function () {
     SearchService.searchMovie($scope.searchWord)
     .then(function (result) {
-      $scope.result.push(result);
-      console.log($scope.result[0].data);
+
+      $scope.result = [];
+      var movieID = 0;
+      result.data.Search.forEach(function (movieObj) {
+        movieObj.id = ++movieID;
+        $scope.result.push(movieObj)
+      });
+      $scope.result = result.data.Search;
+      $scope.searchWord = '';
     });
   };
 
@@ -18,7 +25,7 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
       var search = decodeURI(searchWord);
       return $http({
         method: 'GET',
-        url: "http://www.omdbapi.com/?t=" + search + "&plot=short$=&r=json"
+        url: "http://www.omdbapi.com/?s=" + search + "&plot=short$=&r=json"
       });
     }
   };

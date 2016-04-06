@@ -4,6 +4,10 @@ html {
   font-size: 12px;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 .container {
   display: flex;
 }
@@ -12,4 +16,24 @@ form, input {
   margin: auto;
   font-size: 3rem;
   text-align: center;
+}
+
+#results {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+ul {
+  margin: auto;
+  list-style: none;
+}
+
+li img {
+  width: 60%;
+  cursor: pointer;
+}
+
+.button-primary {
+
 }
