@@ -1,0 +1,15 @@
+/* add custom styles */
+
+html {
+  font-size: 12px;
+}
+
+.container {
+  display: flex;
+}
+
+form, input {
+  margin: auto;
+  font-size: 3rem;
+  text-align: center;
+}
