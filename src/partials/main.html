@@ -11,7 +11,7 @@
   <hr class="twelve columns">
   <div id="results" class="twelve columns">
     <ul>
-      <li ng-repeat="movie in result" track by $index ng-click="showSingleMovie(movie.id)">{{ movie.Title }} - {{ movie.Year }}
+      <li ng-repeat="movie in result" track by $index ng-click="showSingleMovie(movie)">{{ movie.Title }} - {{ movie.Year }}
         <ul>
           <li><img ng-src="{{ movie.Poster }}" alt="" /></li>
         </ul>

@@ -17,6 +17,14 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
     });
   };
 
+  $scope.singleMovie = {};
+  $scope.showSingleMovie = function(movieObj) {
+    SearchService.showSingleMovie(movieObj)
+    .then(function (result) {
+      console.log(result);
+      $scope.singleMovie = result;
+    });
+  };
 
 }])
 .service('SearchService', ["$http", function ($http) {
@@ -27,6 +35,9 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
         method: 'GET',
         url: "http://www.omdbapi.com/?s=" + search + "&plot=short$=&r=json"
       });
+    },
+    showSingleMovie: function (movieObj) {
+      return movieObj;
     }
   };
 }]);
