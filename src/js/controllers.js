@@ -1,4 +1,4 @@
-app.controller('MovieController', ['$scope', 'SearchService', '$location', function($scope, SearchService, $location) {
+app.controller('searchController', ['$scope', 'SearchService', '$location', function($scope, SearchService, $location) {
   $scope.searchWord = '';
   $scope.movie = "movie";
   $scope.result = [];
@@ -16,34 +16,32 @@ app.controller('MovieController', ['$scope', 'SearchService', '$location', funct
       $scope.searchWord = '';
     });
   };
-
-  $scope.singleMovie = {};
-
-
-  $scope.showSingleMovie = function (movieObj) {
-    SearchService.searchSingleMovie(movieObj.imdbID)
+}])
+.controller('showController', ['$scope', 'SearchService', '$location', '$routeParams', function ($scope, SearchService, $location, $routeParams) {
+  console.log($routeParams);
+  $scope.singleMovie = 'stuff';
+  $scope.searchSingleMovie = function () {
+    var id = $routeParams.id;
+    SearchService.searchSingleMovie(id)
     .then(function (result) {
       console.log(result);
-      $scope.singleMovie = result.data;
-      $location.path(decodeURI('#/movie/' + movieObj.id));
+      $scope.singleMovie = result;
     });
   }
 
-}])
-.service('SearchService', ["$http", function ($http) {
-  return {
-    searchMovie: function (searchWord) {
-      var search = decodeURI(searchWord);
-      return $http({
-        method: 'GET',
-        url: "http://www.omdbapi.com/?s=" + search + "&plot=short$=&r=json"
-      });
-    },
-    searchSingleMovie : function (id) {
-      return $http({
-        method: 'GET',
-        url: 'http://www.omdbapi.com/?i=' + id + '&plot=short$=&r=json'
-      })
-    }
-  };
 }]);
+
+
+
+  // $scope.singleMovie = {};
+
+
+  // $scope.showSingleMovie = function (movieObj) {
+  //   SearchService.searchSingleMovie(movieObj.imdbID)
+  //   .then(function (result) {
+  //     console.log(result);
+  //     $scope.singleMovie = result.data;
+  //     console.log('$location.path($location.path(movieObj.id)', function ())
+  //     // $location.path($loction.path)' + movieObj.id));
+  //   });
+  // }
