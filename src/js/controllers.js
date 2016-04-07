@@ -1,12 +1,11 @@
-app.controller('MovieController', ['$scope', 'SearchService', function($scope, SearchService) {
+app.controller('MovieController', ['$scope', 'SearchService', '$location', function($scope, SearchService, $location) {
   $scope.searchWord = '';
   $scope.movie = "movie";
   $scope.result = [];
 
-  $scope.search = function () {
-    SearchService.searchMovie($scope.searchWord)
+  $scope.search = function (searchWord) {
+    SearchService.searchMovie(searchWord)
     .then(function (result) {
-
       $scope.result = [];
       var movieID = 0;
       result.data.Search.forEach(function (movieObj) {
@@ -21,13 +20,14 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
   $scope.singleMovie = {};
 
 
-  // $scope.showSingleMovie = function (movieObj) {
-  //   SearchService.showSingleMovie(movieObj)
-  //   .then(function (result) {
-  //     console.log(result);
-  //     $scope.singleMovie = result;
-  //   });
-  // };
+  $scope.showSingleMovie = function (movieObj) {
+    SearchService.searchSingleMovie(movieObj.imdbID)
+    .then(function (result) {
+      console.log(result);
+      $scope.singleMovie = result.data;
+      $location.path(decodeURI('#/movie/' + movieObj.id));
+    });
+  }
 
 }])
 .service('SearchService', ["$http", function ($http) {
@@ -39,8 +39,11 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
         url: "http://www.omdbapi.com/?s=" + search + "&plot=short$=&r=json"
       });
     },
-    // showSingleMovie: function (movieObj) {
-    //   return movieObj;
-    // }
+    searchSingleMovie : function (id) {
+      return $http({
+        method: 'GET',
+        url: 'http://www.omdbapi.com/?i=' + id + '&plot=short$=&r=json'
+      })
+    }
   };
 }]);

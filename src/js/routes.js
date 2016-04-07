@@ -5,7 +5,7 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl: './partials/main.html',
       controller: 'MovieController'
     })
-    .when('/movie/:id', {
+    .when('#/movie/:id', {
       templateUrl: './partials/show.html',
       controller: 'MovieController'
     });
