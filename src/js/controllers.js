@@ -2,6 +2,7 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
   $scope.searchWord = '';
   $scope.movie = "movie";
   $scope.result = [];
+
   $scope.search = function () {
     SearchService.searchMovie($scope.searchWord)
     .then(function (result) {
@@ -18,13 +19,15 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
   };
 
   $scope.singleMovie = {};
-  $scope.showSingleMovie = function(movieObj) {
-    SearchService.showSingleMovie(movieObj)
-    .then(function (result) {
-      console.log(result);
-      $scope.singleMovie = result;
-    });
-  };
+
+
+  // $scope.showSingleMovie = function (movieObj) {
+  //   SearchService.showSingleMovie(movieObj)
+  //   .then(function (result) {
+  //     console.log(result);
+  //     $scope.singleMovie = result;
+  //   });
+  // };
 
 }])
 .service('SearchService', ["$http", function ($http) {
@@ -36,8 +39,8 @@ app.controller('MovieController', ['$scope', 'SearchService', function($scope, S
         url: "http://www.omdbapi.com/?s=" + search + "&plot=short$=&r=json"
       });
     },
-    showSingleMovie: function (movieObj) {
-      return movieObj;
-    }
+    // showSingleMovie: function (movieObj) {
+    //   return movieObj;
+    // }
   };
 }]);

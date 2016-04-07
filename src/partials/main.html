@@ -11,11 +11,11 @@
   <hr class="twelve columns">
   <div id="results" class="twelve columns">
     <ul>
-      <li ng-repeat="movie in result" track by $index ng-click="showSingleMovie(movie)">{{ movie.Title }} - {{ movie.Year }}
+      <a href="/#/movie/{{movie.id}}" ng-repeat="movie in result" track by $index><li>{{ movie.Title }} - {{ movie.Year }}
         <ul>
           <li><img ng-src="{{ movie.Poster }}" alt="" /></li>
         </ul>
-      </li>
+      </li></a>
     </ul>
   </div>
 </div>
