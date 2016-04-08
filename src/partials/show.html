@@ -1,4 +1,8 @@
-<div class="twelve columns">
-  {{ singleMovie }}
-  test
+<div id="show" class="twelve columns">
+  <h3>{{ singleMovie.Title }}</h3>
+  <h5>{{ singleMovie.Released | date }}</h5>
+  <img ng-src="{{singleMovie.Poster}}" alt="" />
+  <p>
+    {{ singleMovie.imdbRating }}
+  </p>
 </div>

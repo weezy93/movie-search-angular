@@ -17,47 +17,12 @@ app.controller('searchController', ['$scope', 'SearchService', '$location', '$ro
     });
   };
 
-  // SearchService.imdbID = $routeParams.id;
-  $scope.singleMovie = '';
-
-  $scope.searchSingleMovie = function (id) {
-
-    console.log('here');
-    SearchService.searchSingleMovie(id)
-    .then(function (result) {
-      console.log(result);
-      $scope.singleMovie = result;
-    });
-  };
-
+}])
+.controller('showController', ['$scope', 'SearchService', '$location', '$routeParams', function ($scope, SearchService, $location, $routeParams) {
+  SearchService.imdbID = $routeParams.id;
+  SearchService.searchSingleMovie(SearchService.imdbID)
+  .then(function (result) {
+    $scope.singleMovie = result.data;
+  });
 
 }]);
-// .controller('showController', ['$scope', 'SearchService', '$location', '$routeParams', function ($scope, SearchService, $location, $routeParams) {
-//   SearchService.imdbID = $routeParams.id;
-//   $scope.singleMovie = '';
-//
-//   $scope.searchSingleMovie = function () {
-//     console.log('here');
-//     SearchService.searchSingleMovie()
-//     .then(function (result) {
-//       console.log(result);
-//       $scope.singleMovie = result;
-//     });
-//   };
-//
-// }]);
-
-
-
-  // $scope.singleMovie = {};
-
-
-  // $scope.showSingleMovie = function (movieObj) {
-  //   SearchService.searchSingleMovie(movieObj.imdbID)
-  //   .then(function (result) {
-  //     console.log(result);
-  //     $scope.singleMovie = result.data;
-  //     console.log('$location.path($location.path(movieObj.id)', function ())
-  //     // $location.path($loction.path)' + movieObj.id));
-  //   });
-  // }

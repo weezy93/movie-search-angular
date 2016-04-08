@@ -34,6 +34,12 @@ li img {
   cursor: pointer;
 }
 
-.button-primary {
+#show {
+  display: flex;
+  flex-flow: column;
+}
 
+#show * {
+  width: auto;
+  margin: auto;
 }

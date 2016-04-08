@@ -9,7 +9,6 @@ app.service('SearchService', ["$http", "$location", function ($http, $location) 
       });
     },
     searchSingleMovie : function (id) {
-      $location.url("/movie/" + id);
       return $http({
         method: 'GET',
         url: 'http://www.omdbapi.com/?i=' + id + '&plot=short$=&r=json'

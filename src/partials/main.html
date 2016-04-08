@@ -11,7 +11,7 @@
   <hr class="twelve columns">
   <div id="results" class="twelve columns">
     <ul>
-      <a ng-repeat="movie in result track by $index"  ng-click="searchSingleMovie(movie.imdbID)"><li>{{ movie.Title }} - {{ movie.Year }}
+      <a ng-repeat="movie in result track by $index"  ng-href="/#/movie/{{movie.imdbID}}/"><li>{{ movie.Title }} - {{ movie.Year }}
         <ul>
           <li><img ng-src="{{ movie.Poster }}" alt="" /></li>
         </ul>
@@ -22,3 +22,4 @@
 </div>
 
 <!-- ng-href="/#/movie/{{movie.imdbID}}/" -->
+ <!-- ng-click="searchSingleMovie(movie.imdbID)" -->

@@ -7,7 +7,7 @@ app.config(function($routeProvider, $locationProvider) {
     })
     .when('/movie/:id', {
       templateUrl: 'partials/show.html',
-      controller: 'searchController'
+      controller: 'showController'
     })
     .otherwise('/');
 });
