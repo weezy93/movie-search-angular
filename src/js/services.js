@@ -1,5 +1,6 @@
-app.service('SearchService', ["$http", function ($http) {
+app.service('SearchService', ["$http", "$location", function ($http, $location) {
   return {
+    imdbID: '',
     searchMovie: function (searchWord) {
       var search = decodeURI(searchWord);
       return $http({
@@ -8,6 +9,7 @@ app.service('SearchService', ["$http", function ($http) {
       });
     },
     searchSingleMovie : function (id) {
+      $location.url("/movie/" + id);
       return $http({
         method: 'GET',
         url: 'http://www.omdbapi.com/?i=' + id + '&plot=short$=&r=json'
